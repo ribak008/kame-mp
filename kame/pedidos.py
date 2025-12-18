@@ -33,7 +33,4 @@ def get_pedido_faltantes(numero_pedido):
             print(f"- {p['Descripcion']}: Cantidad Pedida: {p['Cantidad']}, Cantidad Entregada: {cantidad_entregada}, Faltantes: {p['Cantidad'] - cantidad_entregada}")
             
 
-        
-    
-    
-
+    return data
