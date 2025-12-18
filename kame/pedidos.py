@@ -48,19 +48,21 @@ def get_pedido_faltantes(numero_pedido):
     data = response.json()
 
     productos = []
+    try:
+        for p in data["Detalle"]:
+            pedida = float(p["Cantidad"])
+            entregada = float(p["CantidadRecEnt"] or 0)
+            faltantes = pedida - entregada
 
-    for p in data["Detalle"]:
-        pedida = float(p["Cantidad"])
-        entregada = float(p["CantidadRecEnt"] or 0)
-        faltantes = pedida - entregada
-
-        if faltantes > 0:  
-            productos.append({
-                "Producto": p["Descripcion"],
-                "Pedida": pedida,
-                "Entregada": entregada,
-                "Faltantes": faltantes
-            })
+            if faltantes > 0:  
+                productos.append({
+                    "Producto": p["Descripcion"],
+                    "Pedida": pedida,
+                    "Entregada": entregada,
+                    "Faltantes": faltantes
+                })
+    except KeyError:
+        raise Exception(f"❌ Error obteniendo pedido: {data.get('message', 'Respuesta inesperada')}")
 
     return {
         "Documento": data["Documento"],
