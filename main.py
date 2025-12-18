@@ -6,7 +6,7 @@ from kame.list_articulo import list_articulo
 from kame.stock import list_stock
 
 
-get_pedido_faltantes(49)  # Reemplaza con un número de pedido válido
+get_pedido_faltantes(25)  # Reemplaza con un número de pedido válido
 # list_unidad_negocio()
 # list_articulo("RP30X40X10K")
 
